@@ -1,2 +1,14 @@
-list book (20/10/2020)
-login logout(21/10/2020)
+Requirement Pair Project:
+1. CRUD    (CREATE, READ, UPDATE, DELETE) 🌊
+2. Association Many to many ✔️
+3. Class (Static METHOD DI MODEL) & Instance Method 🌊
+4. Helper ❌
+5. Hooks ✔️
+6. Middleware ✔️
+7. SESSION / tentang login loginan ✔️
+8. MVP - nodemailer ❌
+9. Deploy Heroku => https://medium.com/easyread/cara-deploy-express-dan-postrgres-ke-heroku-4b08e6bc1d64 ❌
+
+✔️ = udah kelar
+🌊 = lagi progress
+❌ = blom disentuh

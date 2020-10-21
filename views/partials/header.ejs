@@ -11,18 +11,14 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="/">Home</a>
         <a class="navbar-brand" href="/books">Books</a>
-        <a class="navbar-brand" href="/authors" <%= author ? 'hidden' : '' %> >Authors</a>
-        <% if(username){ %>
-          <a class="navbar-brand" href="/users/<%=username%>"><%= username %></a>
-          <a class="navbar-brand" href="/users/logout">Logout</a>
-        <% } else if (author) { %>
-          <a class="navbar-brand"><%= author %> </a>
-          <a class="navbar-brand" href="/users/logout">Logout</a>
-        <% } else { %>
-          <a class="navbar-brand" href="/users/login">Login</a>
-        <% } %>
+        <a class="navbar-brand" href="/authors">Authors</a>
+
+        <a class="navbar-brand" href="/users/<%=username%>" <%= username ? '' : 'hidden' %> <%= username %>></a>
+        <a class="navbar-brand" <%= author ? '' : 'hidden' %>><%= author %> </a>
+        <a class="navbar-brand" href="/users/logout" <%= username || author ? '' : 'hidden' %> >Logout</a>
+        
+        <a class="navbar-brand" href="/users/login" <%= username || author ? 'hidden' : '' %>>Login</a>
         </div>
       </nav>
-    <div class="container mt-4 text-center">
-        <h1><%= title %></h1>
-    </div>
+    <div class="container mt-4">
+        <h1 class="text-center"><%= title %></h1>
