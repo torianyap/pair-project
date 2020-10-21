@@ -1,0 +1,27 @@
+<%- include('../partials/header.ejs', {title: 'Login'}) %>
+<br>
+    <div class="container mt-4">
+        <% if (alert) { %>
+            <div class="alert alert-warning" role="alert">
+                <%= alert %>  
+            </div>
+        <%  } %>
+        
+        <form action="/users/login" method="POST">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username" class="form-control" placeholder="e.g: John Doe">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" class="form-control">
+            </div>
+            <button class="btn btn-success" type="submit">Login</button>
+            <button class="btn btn-danger" type="reset">Reset</button>
+        </form>
+        <br> <br>
+        <p>Don't have an account ?</p>
+        <a href="/users/register">Click Here To Register</a>
+    </div>
+</body>
+</html>

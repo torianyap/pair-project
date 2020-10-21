@@ -1,13 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book List</title>
-</head>
-<body>
-    <h1>List Book</h1>
-    <table border="1">
+<%- include('../partials/header.ejs', {title: 'List of Books'}) %> 
+<br>
+    <div class="container">
+    <table class="table">
         <thead>
             <tr>
                 <th scope="col">Title</th>
@@ -20,25 +14,32 @@
         <tbody>
             <% data.forEach(el => { %>
                 <tr>
-                    <td><%= el.title %></td>
+                    <td>
+                        <%= el.title %>
+                    </td>
                     <% const genre = el.genre.substring(1, el.genre.length-1).split(',') %> 
                     <td>
-                        <ul>
+                        <ul class="list-group">
                         <% genre.forEach (element => { %>
-                            <li><%= element %> </li>
+                            <li class="list-group-item"><%= element %> </li>
                         <% }) %> 
                     </ul>
                     </td>
                     <td><%= el.released_year %></td>
                     <td><%= el.Author.fullName() %> </td>
                     <td>
-                        <a href="/books/<%= el.id %>/edit">Edit</a>
-                        <a href="/books/<%= el.id %>/delete">Delete</a>
-                        <a href="/users/<%= username %>/<%= el.id %>">Borrow</a>
+                        <% if (author) { %>
+                            <a class="btn btn-primary" href="/books/<%= el.id %>/edit">Edit</a>
+                            <a class="btn btn-danger" href="/books/<%= el.id %>/delete">Delete</a>
+                            <a class="btn btn-info" href="/users/<%= username %>/<%= el.id %>">Borrow</a>
+                        <% } else { %>
+                            <a class="btn btn-info" href="/users/<%= username %>/<%= el.id %>">Borrow</a>
+                        <% } %> 
                     </td>
                 </tr>
             <% }) %> 
         </tbody>
     </table>
+    </div>
 </body>
 </html>

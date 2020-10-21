@@ -1,0 +1,30 @@
+<%- include('../partials/header.ejs', {title: 'List of Authors'}) %> 
+<br>
+    <div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Age</th>
+                <th scope="col">Books In Our Library</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% data.forEach(el => { %>
+                <tr>
+                    <td><%= el.fullName() %></td>
+                    <td><%= el.age %></td>
+                    <td>
+                        <ul class="list-group">
+                            <% el.Books.forEach( book => { %>
+                                <li class="list-group-item"><%= book.title %></li>
+                            <% }) %> 
+                        </ul>
+                    </td>
+                </tr>
+            <% }) %> 
+        </tbody>
+    </table>
+    </div>
+</body>
+</html>

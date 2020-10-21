@@ -7,8 +7,10 @@ class BookController {
             order : [['id', 'asc']]
         })
         .then (data => {
-            console.log(data)
-            res.render('./books/list', {data})
+            const username = req.session.username
+            const author = req.session.author
+            console.log(req.session)
+            res.render('./books/list', {data, username, author})
         })
         .catch(err => {
             res.send(err)

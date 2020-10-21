@@ -2,18 +2,22 @@
 [
     {
         "first_name": "J.K",
-        "last_name": "Rowling"
+        "last_name": "Rowling",
+        "age": 55
     },
     {
         "first_name": "Rick",
-        "last_name": "Riordan"
+        "last_name": "Riordan",
+        "age": 56
     },
     {
         "first_name": "Andrea",
-        "last_name": "Hirata"
+        "last_name": "Hirata",
+        "age": 52
     },
     {
         "first_name": "Ray",
-        "last_name": "Bradburry"
+        "last_name": "Bradburry",
+        "age": 92
     }
 ]
