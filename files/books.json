@@ -1,0 +1,139 @@
+[
+    {
+        "title": "Harry Potter and The Philosopher's Stone",
+        "genre": [
+            "Fiction",
+            "Drama",
+            "Mystery"
+        ],
+        "released_year": 1997,
+        "AuthorId": 1
+    },
+    {
+        "title": "Harry Potter and The Chamber of Secrets",
+        "genre": [
+            "Fiction",
+            "Drama",
+            "Mystery"
+        ],
+        "released_year": 1998,
+        "AuthorId": 1
+    },
+    {
+        "title": "Harry Potter and The Prisoner of Azkaban",
+        "genre": [
+            "Fiction",
+            "Drama",
+            "Mystery"
+        ],
+        "released_year": 1999,
+        "AuthorId": 1
+    },
+    {
+        "title": "Harry Potter and The Goblet of Fire",
+        "genre": [
+            "Fiction",
+            "Drama",
+            "Mystery"
+        ],
+        "released_year": 2000,
+        "AuthorId": 1
+    },
+    {
+        "title": "Harry Potter and The Order of the Phoenix",
+        "genre": [
+            "Fiction",
+            "Drama",
+            "Mystery"
+        ],
+        "released_year": 2003,
+        "AuthorId": 1
+    },
+    {
+        "title": "Harry Potter and The Half Blood Prince",
+        "genre": [
+            "Fiction",
+            "Drama",
+            "Mystery"
+        ],
+        "released_year": 2005,
+        "AuthorId": 1
+    },
+    {
+        "title": "Harry Potter and The Deathly Hallows",
+        "genre": [
+            "Fiction",
+            "Drama",
+            "Mystery"
+        ],
+        "released_year": 2007,
+        "AuthorId": 1
+    },
+    {
+        "title": "Percy Jackson & The Olympians: The Lightning Thief",
+        "genre": [
+            "Fiction",
+            "Fantasy",
+            "Mythology"
+        ],
+        "released_year": 2005,
+        "AuthorId": 2
+    },
+    {
+        "title": "Percy Jackson & The Olympians: The Sea of Monsters",
+        "genre": [
+            "Fiction",
+            "Fantasy",
+            "Mythology"
+        ],
+        "released_year": 2006,
+        "AuthorId": 2
+    },
+    {
+        "title": "Percy Jackson & The Olympians: The Titan's Curse",
+        "genre": [
+            "Fiction",
+            "Fantasy",
+            "Mythology"
+        ],
+        "released_year": 2007,
+        "AuthorId": 2
+    },
+    {
+        "title": "Percy Jackson & The Olympians: The Battle of the Labyrinth",
+        "genre": [
+            "Fiction",
+            "Fantasy",
+            "Mythology"
+        ],
+        "released_year": 2008,
+        "AuthorId": 2
+    },
+    {
+        "title": "Percy Jackson & The Olympians: The Last Olympian",
+        "genre": [
+            "Fiction",
+            "Fantasy",
+            "Mythology"
+        ],
+        "released_year": 2009,
+        "AuthorId": 2
+    },
+    {
+        "title": "Laskar Pelangi",
+        "genre": [
+            "Drama"
+        ],
+        "released_year": 2005,
+        "AuthorId": 3
+    },
+    {
+        "title": "Fahrenheit 451",
+        "genre": [
+            "Fiction",
+            "Fantasy"
+        ],
+        "released_year": 1953,
+        "AuthorId": 4
+    }
+]

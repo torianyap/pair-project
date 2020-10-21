@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book List</title>
+</head>
+<body>
+    <h1>List Book</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Genre</th>
+                <th scope="col">Released Year</th>
+                <th scope="col">Author</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% data.forEach(el => { %>
+                <tr>
+                    <td><%= el.title %></td>
+                    <% const genre = el.genre.substring(1, el.genre.length-1).split(',') %> 
+                    <td>
+                        <ul>
+                        <% genre.forEach (element => { %>
+                            <li><%= element %> </li>
+                        <% }) %> 
+                    </ul>
+                    </td>
+                    <td><%= el.released_year %></td>
+                    <td><%= el.Author.fullName() %> </td>
+                    <td>
+                        <a href="/books/<%= el.id %>/edit">Edit</a>
+                        <a href="/books/<%= el.id %>/delete">Delete</a>
+                        <a href="/users/<%= username %>/<%= el.id %>">Borrow</a>
+                    </td>
+                </tr>
+            <% }) %> 
+        </tbody>
+    </table>
+</body>
+</html>
