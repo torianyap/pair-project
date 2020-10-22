@@ -20,6 +20,9 @@ module.exports = {
       status: {
         type: Sequelize.STRING
       },
+      url: {
+        type: Sequelize.STRING
+      },
       AuthorId: {
         type: Sequelize.INTEGER,
         references: {

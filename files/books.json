@@ -7,6 +7,7 @@
             "Mystery"
         ],
         "released_year": 1997,
+        "url": "http://arah.in/potter-1-rev",
         "AuthorId": 1
     },
     {
@@ -17,6 +18,7 @@
             "Mystery"
         ],
         "released_year": 1998,
+        "url": "http://arah.in/potter-2",
         "AuthorId": 1
     },
     {
@@ -27,6 +29,7 @@
             "Mystery"
         ],
         "released_year": 1999,
+        "url": "http://arah.in/potter-3",
         "AuthorId": 1
     },
     {
@@ -37,6 +40,7 @@
             "Mystery"
         ],
         "released_year": 2000,
+        "url": "http://arah.in/potter-4",
         "AuthorId": 1
     },
     {
@@ -47,6 +51,7 @@
             "Mystery"
         ],
         "released_year": 2003,
+        "url": "http://arah.in/potter-5",
         "AuthorId": 1
     },
     {
@@ -57,6 +62,7 @@
             "Mystery"
         ],
         "released_year": 2005,
+        "url": "http://arah.in/potter-6-rev",
         "AuthorId": 1
     },
     {
@@ -67,6 +73,7 @@
             "Mystery"
         ],
         "released_year": 2007,
+        "url": "http://arah.in/potter-7",
         "AuthorId": 1
     },
     {
@@ -77,6 +84,7 @@
             "Mythology"
         ],
         "released_year": 2005,
+        "url": "http://arah.in/pj-1",
         "AuthorId": 2
     },
     {
@@ -87,6 +95,7 @@
             "Mythology"
         ],
         "released_year": 2006,
+        "url": "http://arah.in/pj-2",
         "AuthorId": 2
     },
     {
@@ -97,6 +106,7 @@
             "Mythology"
         ],
         "released_year": 2007,
+        "url": "https://bit.ly/3oj77DW",
         "AuthorId": 2
     },
     {
@@ -107,6 +117,7 @@
             "Mythology"
         ],
         "released_year": 2008,
+        "url": "https://bit.ly/2FONWR5v",
         "AuthorId": 2
     },
     {
@@ -117,6 +128,7 @@
             "Mythology"
         ],
         "released_year": 2009,
+        "url": "https://bit.ly/2FQioKN",
         "AuthorId": 2
     },
     {
@@ -125,6 +137,7 @@
             "Drama"
         ],
         "released_year": 2005,
+        "url": "http://arah.in/laskar-pelangi",
         "AuthorId": 3
     },
     {
@@ -134,6 +147,7 @@
             "Fantasy"
         ],
         "released_year": 1953,
+        "url": "http://arah.in/fahrenheit-451",
         "AuthorId": 4
     }
 ]

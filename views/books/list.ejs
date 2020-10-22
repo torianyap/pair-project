@@ -8,6 +8,7 @@
         <thead>
             <tr>
                 <th scope="col">Title</th>
+                <th scope="col">Cover</th>
                 <th scope="col">Genre</th>
                 <th scope="col">Released Year</th>
                 <th scope="col">Author</th>
@@ -18,6 +19,7 @@
             <% data.forEach(el => { %>
                 <tr>
                     <td><%= el.title %></td>
+                    <td><img src="<%= el.url %>" alt="Cover" width="200px" height="300px"></td>
                     <% const genre = el.genre.substring(1, el.genre.length-1).split(',') %> 
                     <td>
                         <ul class="list-group">
@@ -29,8 +31,8 @@
                     <td><%= el.released_year %></td>
                     <td><%= el.Author.fullName() %> </td>
                     <td>
-                        <a class="btn btn-primary" href="/books/<%= el.id %>/edit" <%= author ? '' : 'hidden' %>>Edit</a>
-                        <a class="btn btn-danger" href="/books/<%= el.id %>/delete" <%= author ? '' : 'hidden' %>>Delete</a>
+                        <a class="btn btn-primary" href="/books/<%= el.id %>/edit" <%= author && el.status === 'free' ? '' : 'hidden' %>>Edit</a>
+                        <a class="btn btn-danger" href="/books/<%= el.id %>/delete" <%= author && el.status === 'free' ? '' : 'hidden' %>>Delete</a>
                         <% if (el.status === 'borrowed') { %>
                             <a class="btn btn-info">This Book Is Borrowed</a>
                         <% } else { %>

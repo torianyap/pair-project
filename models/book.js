@@ -33,11 +33,24 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notEmpty: {
           args: true,
-          msg: 'this book must have already been released, insert it'
+          msg: 'please insert the released year'
         }
       }
     },
     status: DataTypes.STRING,
+    url: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: {
+          args: true,
+          msg: 'please provide an url'
+        },
+        isUrl: {
+          args: true,
+          msg: 'please insert a valid url'
+        }
+      }
+    },
     AuthorId: DataTypes.INTEGER
   }, {
     sequelize,
