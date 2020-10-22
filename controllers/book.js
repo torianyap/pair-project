@@ -1,4 +1,5 @@
 const {Author, Book, User, UserBook} = require('../models')
+const transporter = require('../helper/nodemailer')
 
 class BookController {
     static listBooks(req, res) {
@@ -37,9 +38,28 @@ class BookController {
             url: req.body.url,
             AuthorId : req.body.AuthorId
         }
-
-            Book.create(newBook)
+        
+        const emails = []
+            User.findAll()
+            .then(result => {
+                result.forEach(el => emails.push(el.email))
+                return Book.create(newBook)
+            })
             .then(data => {
+                var mailOptions = {
+                    from: 'toriany6@gmail.com',
+                    to: emails,
+                    subject: `A New Book Just Arrived`,
+                    text: `Hello, there's a new book in our catalog titled ${newBook.title} come be the first to borrow it!!`
+                  };
+                
+                transporter.sendMail(mailOptions, function(error, info){
+                    if (error) {
+                      console.log(error);
+                    } else {
+                      console.log('Email sent: ' + info.response);
+                    }
+                });
                 res.redirect('/books')
             })
             .catch(err=> {
