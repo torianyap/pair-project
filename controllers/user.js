@@ -151,7 +151,7 @@ class UserController {
             user = data
 
             return UserBook.create({
-                UserId: user.id,
+                UserId: data.id,
                 BookId: BookId,
                 borrow_date: new Date()
             })

@@ -15,6 +15,7 @@ class BookController {
             res.send(err)
         })
     }
+    
     static addBook(req, res) {
         const alert = req.query.alert
         const username = req.session.username

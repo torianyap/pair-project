@@ -29,7 +29,7 @@
                     <td><%= el.Author.fullName() %> </td>
                     <td>
                         <a class="btn btn-primary" href="/books/<%= el.id %>/edit" <%= author && el.status === null ? '' : 'hidden' %>>Edit</a>
-                        <a class="btn btn-danger" href="/books/<%= el.id %>/delete" <%= author && el.status === null ? '' : 'hidden' %>>Delete</a>
+                        <a class="btn btn-danger" href="/books/<%= el.id %>/delete" onclick="return confirm('are you sure you want to delete this book ?')" <%= author && el.status === null ? '' : 'hidden' %>>Delete</a>
                         <% if (el.status === 'borrowed') { %>
                             <a class="btn btn-info">This Book Is Borrowed</a>
                         <% } else { %>
