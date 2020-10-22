@@ -108,7 +108,8 @@ class BookController {
             Book.update(value, {
                 where: {
                     id: id
-                }
+                },
+                individualHooks: true
             })
             .then(data =>{
                 res.redirect('/books')

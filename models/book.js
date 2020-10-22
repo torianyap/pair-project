@@ -69,6 +69,9 @@ module.exports = (sequelize, DataTypes) => {
     instance.status = null
     instance.genre = `{${instance.genre}}`
   })
+  Book.addHook('beforeUpdate', (instance, options) => {
+    instance.genre = `{${instance.genre}}`
+  })
 
   return Book;
 };
