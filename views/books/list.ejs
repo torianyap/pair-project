@@ -1,9 +1,6 @@
 <%- include('../partials/header.ejs', {title: 'List of Books'}) %> 
-<br> 
-    <div class="container">
-    <br>
     <a href="/books/add" class="btn btn-primary" <%= author ? '' : 'hidden' %> >Add a book</a>
-    <br> <br>
+    <br>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -31,8 +28,8 @@
                     <td><%= el.released_year %></td>
                     <td><%= el.Author.fullName() %> </td>
                     <td>
-                        <a class="btn btn-primary" href="/books/<%= el.id %>/edit" <%= author && el.status === 'free' ? '' : 'hidden' %>>Edit</a>
-                        <a class="btn btn-danger" href="/books/<%= el.id %>/delete" <%= author && el.status === 'free' ? '' : 'hidden' %>>Delete</a>
+                        <a class="btn btn-primary" href="/books/<%= el.id %>/edit" <%= author && el.status === null ? '' : 'hidden' %>>Edit</a>
+                        <a class="btn btn-danger" href="/books/<%= el.id %>/delete" <%= author && el.status === null ? '' : 'hidden' %>>Delete</a>
                         <% if (el.status === 'borrowed') { %>
                             <a class="btn btn-info">This Book Is Borrowed</a>
                         <% } else { %>
@@ -43,6 +40,5 @@
             <% }) %> 
         </tbody>
     </table>
-    </div>
 </body>
 </html>

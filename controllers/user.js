@@ -201,7 +201,7 @@ class UserController {
             returning: true
         })
         .then(result => {
-            return Book.update({status: 'free'}, {
+            return Book.update({status: null}, {
                 where: {
                     id: result[1][0].BookId
                 },

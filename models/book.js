@@ -51,14 +51,23 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
-    AuthorId: DataTypes.INTEGER
+    AuthorId: {
+      type: DataTypes.INTEGER,
+      validate: {
+        notEmpty: {
+          args: true,
+          msg: 'please isert the author'
+        }
+      }
+    },
   }, {
     sequelize,
     modelName: 'Book',
   });
 
   Book.addHook('beforeCreate', (instance, options) => {
-    instance.status = 'free'
+    instance.status = null
+    instance.genre = `{${instance.genre}}`
   })
 
   return Book;
