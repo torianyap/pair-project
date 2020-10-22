@@ -2,7 +2,8 @@ function checkUser(req, res, next) {
     if (req.session.username) {
         next()
     } else {
-        res.send('You are not logged in')
+        const alert = ['Please Login first']
+        res.redirect(`/users/login?alert=${alert}`)
     }
 }
 module.exports = checkUser

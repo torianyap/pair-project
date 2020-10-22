@@ -2,9 +2,11 @@
 <br>
     <div class="container mt-4">
         <% if (alert) { %>
-            <div class="alert alert-warning" role="alert">
-                <%= alert %>  
-            </div>
+            <% alert.split(',').forEach(el => { %>
+                <div class="alert alert-danger" role="alert">
+                    <%= el %>  
+                </div>
+            <% }) %> 
         <%  } %>
         
         <form action="/users/login" method="POST">

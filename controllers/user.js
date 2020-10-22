@@ -1,9 +1,10 @@
 const bcrypt = require('bcrypt')
 const {Author, Book, User, UserBook} = require('../models')
+const transporter = require('../helper/nodemailer')
 
 class UserController {
     static formRegister (req, res) {
-        const alert = req.query.alert
+        const alert = req.query.alert || null
         const username = req.session.username
         const author = req.session.author
         res.render('./user/register', {alert, username, author})
@@ -29,18 +30,21 @@ class UserController {
             }
         })
         .then(newUser => {
-            console.log(obj)
             req.session.username = obj.username
-            console.log(req.session.username)
             res.redirect('/books')
         })
         .catch(err => {
-            res.send(err)
+            if (err.errors) {
+                const problems = err.errors.map(el => el.message)
+                res.redirect(`/users/register?alert=${problems}`)
+            } else {
+                res.send(err)
+            }
         })
     }
 
     static formLogin(req, res) {
-        const alert = req.query.alert
+        const alert = req.query.alert || null
         const username = req.session.username
         const author = req.session.author
         res.render('./user/login', {alert, username, author})
@@ -50,39 +54,48 @@ class UserController {
         const username = req.body.username
         const password = req.body.password
 
-        User.findOne({
-            where: {
-                username: username
-            }
-        })
-        .then(data => {
-            if (!data) {
-                return Author.findOne({where: {first_name: username}})
-            } else {
-                if (bcrypt.compareSync(password, data.password)) {
-                    req.session.username = username
-                    res.redirect('/books')
-                } else {
-                    res.send('password is incorrect')
+        if (!username || !password) {
+            const msg = ['username or password is empty']
+            res.redirect(`/users/login?alert=${msg}`)
+
+        } else {
+            User.findOne({
+                where: {
+                    username: username
                 }
-            }
-        })
-        .then(author => {
-            if(author) {
-                if (password === author.last_name) {
-                    req.session.author = author.last_name
-                    console.log(req.session.author)
-                    res.redirect('/books')
+            })
+            .then(data => {
+                if (!data) {
+                    return Author.findOne({where: {first_name: username}})
                 } else {
-                    res.send('wrong password')
+                    if (bcrypt.compareSync(password, data.password)) {
+                        req.session.username = username
+                        res.redirect('/books')
+                    } else {
+                        let error = ['password is incorrect']
+                        res.redirect(`/users/login?alert=${error}`)
+                    }
                 }
-            } else {
-                res.send('username is not found')
-            }
-        })
-        .catch(err =>{
-            res.send(err)
-        })
+            })
+            .then(author => {
+                if(author) {
+                    if (password === author.last_name) {
+                        req.session.author = author.last_name
+                        console.log(req.session.author)
+                        res.redirect('/books')
+                    } else {
+                        let error = ['password is incorrect']
+                        res.redirect(`/users/login?alert=${error}`)
+                    }
+                } else {
+                    let usernameX = ['username is not found']
+                    res.redirect(`/users/login?alert=${usernameX}`)
+                }
+            })
+            .catch(err =>{
+                res.send(err)
+            })
+        }
     }
 
     static logout(req, res) {
@@ -112,6 +125,7 @@ class UserController {
                     UserId: data.id
                 },
                 include: Book,
+                attributes: ['id', 'UserId', 'BookId', 'borrow_date', 'return_date']
             })
         })
         .then(result => {
@@ -126,6 +140,7 @@ class UserController {
         const username = req.params.username
         const BookId = req.params.BookId
         let user;
+        let userbook
 
         User.findOne({
             where: {
@@ -134,6 +149,7 @@ class UserController {
         })
         .then(data => {
             user = data
+
             return UserBook.create({
                 UserId: user.id,
                 BookId: BookId,
@@ -141,13 +157,32 @@ class UserController {
             })
         })
         .then (data2 => {
+            userbook= data2
+
             return Book.update({status: 'borrowed'}, {
                 where: {
                     id: BookId
-                }
+                },
+                returning: true
             })
         })
         .then(result => {
+            const email = user.email
+
+            var mailOptions = {
+                from: 'toriany6@gmail.com',
+                to: email,
+                subject: 'You just borrowed a book',
+                text: `Hi ${email}, you just borrowed ${result[1][0].title} from our library on ${userbook.borrow_date} please return it within a month, happy reading!`
+              };
+            
+            transporter.sendMail(mailOptions, function(error, info){
+                if (error) {
+                  console.log(error);
+                } else {
+                  console.log('Email sent: ' + info.response);
+                }
+            });
             res.redirect(`/users/${username}`)
         })
         .catch(err => {
@@ -157,26 +192,27 @@ class UserController {
 
     static return(req, res) {
         const username = req.params.username
-        const id = req.params.id
+        const id = +req.params.id
 
         UserBook.update({return_date: new Date()}, {
             where: {
-                id: 1
+                id: id
             },
-            include: Book
+            returning: true
         })
         .then(result => {
             return Book.update({status: 'free'}, {
                 where: {
-                    id: result.BookId
-                }
+                    id: result[1][0].BookId
+                },
+                returning: true
             })
         })
         .then(data => {
-            console.log(data)
             res.redirect(`/users/${username}`)
         })
         .catch(err => {
+            console.log(err)
             res.send(err)
         })
     }

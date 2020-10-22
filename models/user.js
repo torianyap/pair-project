@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notEmpty: {
           args: true,
-          msg: 'a book must have a title'
+          msg: `password can't be empty`
         },
         isAlphanumeric: {
           args: true,
@@ -50,7 +50,7 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notEmpty: {
           args: true,
-          msg: `you must have a phone, right?`
+          msg: `you must have a phone`
         }
       }
     }

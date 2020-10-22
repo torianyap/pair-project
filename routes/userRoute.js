@@ -10,10 +10,10 @@ route.post('/login', UserController.login)
 
 route.get('/logout', UserController.logout)
 
-route.get('/:username', UserController.history)
+route.get('/:username', checkUser ,UserController.history)
 
-route.get('/:username/:BookId', UserController.borrow)
+route.get('/:username/:BookId', checkUser, UserController.borrow)
 
-route.get('/:username/:id/return', UserController.return)
+route.get('/:username/:id/return', checkUser ,UserController.return)
 
 module.exports = route

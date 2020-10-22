@@ -2,9 +2,11 @@
 <br>
     <div class="container mt-4">
         <% if (alert) { %>
-            <div class="alert alert-warning" role="alert">
-                <%= alert %>  
-            </div>
+            <% alert.split(',').forEach(el => { %>
+                <div class="alert alert-danger" role="alert">
+                    <%= el %>  
+                </div>
+            <% }) %> 
         <%  } %>
         
         
@@ -16,6 +18,7 @@
             <div class="form-group">
                 <label for="password">Password</label>
                 <input type="password" name="password" id="password" class="form-control">
+                <i>password must be alphanumeric</i>
             </div>
             <div class="form-group">
                 <label for="email">Email</label>
