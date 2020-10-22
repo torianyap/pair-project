@@ -1,0 +1,38 @@
+<%- include('../partials/header.ejs', {title: 'Your History'}) %>
+<br>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Genre</th>
+            <th>Borrowed Date</th>
+            <th>Return Date</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% result.forEach(el =>{ %>
+            <tr>
+                <td><%= el.Book.title %> </td>
+                <% let genre = el.Book.genre.substring(1, el.Book.genre.length-1).split(',') %>
+                <td>
+                    <ul class="list-group">
+                        <% genre.forEach(element => { %>
+                            <li class="list-group-item"><%= element %> </li>
+                        <% }) %> 
+                    </ul>
+                </td> 
+                <td><%= el.borrow_date.toString() %></td>
+                <td><%= el.return_date ? el.return_date.toString() : '-' %> </td>
+                <td>
+                    <a href="/users/<%= username %>/<%= el.Book.id %>" class="btn btn-success" <%= el.return_date ? '' : 'hidden' %>  >Borrow Again</a>
+                    <a href="/users/<%=username%>/1/return" class="btn btn-primary"<%= el.return_date ? 'hidden' : '' %> >Return</a>
+                </td>
+            </tr>
+        <% }) %> 
+    </tbody>
+</table>
+
+</div>
+</body>
+</html>

@@ -37,10 +37,16 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
+    status: DataTypes.STRING,
     AuthorId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Book',
   });
+
+  Book.addHook('beforeCreate', (instance, options) => {
+    instance.status = 'free'
+  })
+
   return Book;
 };

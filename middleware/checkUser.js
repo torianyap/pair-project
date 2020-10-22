@@ -1,9 +1,8 @@
-const checkUser = (req, res, next) => {
+function checkUser(req, res, next) {
     if (req.session.username) {
         next()
     } else {
-        res.send('You are not login')
+        res.send('You are not logged in')
     }
 }
-
 module.exports = checkUser

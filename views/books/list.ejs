@@ -17,9 +17,7 @@
         <tbody>
             <% data.forEach(el => { %>
                 <tr>
-                    <td>
-                        <%= el.title %>
-                    </td>
+                    <td><%= el.title %></td>
                     <% const genre = el.genre.substring(1, el.genre.length-1).split(',') %> 
                     <td>
                         <ul class="list-group">
@@ -33,7 +31,11 @@
                     <td>
                         <a class="btn btn-primary" href="/books/<%= el.id %>/edit" <%= author ? '' : 'hidden' %>>Edit</a>
                         <a class="btn btn-danger" href="/books/<%= el.id %>/delete" <%= author ? '' : 'hidden' %>>Delete</a>
-                        <a class="btn btn-info" href="/users/<%= username %>/<%= el.id %>">Borrow</a>
+                        <% if (el.status === 'borrowed') { %>
+                            <a class="btn btn-info">This Book Is Borrowed</a>
+                        <% } else { %>
+                            <a class="btn btn-info" href="/users/<%= username %>/<%= el.id %>" <%= author ? 'hidden' : '' %> >Borrow</a>
+                        <% } %>  
                     </td>
                 </tr>
             <% }) %> 

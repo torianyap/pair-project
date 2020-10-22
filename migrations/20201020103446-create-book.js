@@ -17,6 +17,9 @@ module.exports = {
       released_year: {
         type: Sequelize.INTEGER
       },
+      status: {
+        type: Sequelize.STRING
+      },
       AuthorId: {
         type: Sequelize.INTEGER,
         references: {

@@ -5,7 +5,8 @@ class UserController {
     static formRegister (req, res) {
         const alert = req.query.alert
         const username = req.session.username
-        res.render('./user/register', {alert, username})
+        const author = req.session.author
+        res.render('./user/register', {alert, username, author})
     }
 
     static addUser(req, res) {
@@ -28,7 +29,9 @@ class UserController {
             }
         })
         .then(newUser => {
+            console.log(obj)
             req.session.username = obj.username
+            console.log(req.session.username)
             res.redirect('/books')
         })
         .catch(err => {
@@ -67,7 +70,7 @@ class UserController {
         .then(author => {
             if(author) {
                 if (password === author.last_name) {
-                    req.session.author = author.first_name
+                    req.session.author = author.last_name
                     console.log(req.session.author)
                     res.redirect('/books')
                 } else {
@@ -89,6 +92,92 @@ class UserController {
             } else {
                 res.redirect('/')
             }
+        })
+    }
+    
+    static history(req, res) {
+        const username = req.params.username
+        const author = req.session.author
+        let user;
+
+        User.findOne({
+            where: {
+                username: username
+            }
+        })
+        .then(data => {
+            user = data
+            return UserBook.findAll({
+                where: {
+                    UserId: data.id
+                },
+                include: Book,
+            })
+        })
+        .then(result => {
+            res.render('user/history', {result, user, username, author})
+        })
+        .catch(err => {
+            res.send(err)
+        })
+    }
+
+    static borrow(req, res) {
+        const username = req.params.username
+        const BookId = req.params.BookId
+        let user;
+
+        User.findOne({
+            where: {
+                username: username
+            }
+        })
+        .then(data => {
+            user = data
+            return UserBook.create({
+                UserId: user.id,
+                BookId: BookId,
+                borrow_date: new Date()
+            })
+        })
+        .then (data2 => {
+            return Book.update({status: 'borrowed'}, {
+                where: {
+                    id: BookId
+                }
+            })
+        })
+        .then(result => {
+            res.redirect(`/users/${username}`)
+        })
+        .catch(err => {
+            res.send(err)
+        })
+    }
+
+    static return(req, res) {
+        const username = req.params.username
+        const id = req.params.id
+
+        UserBook.update({return_date: new Date()}, {
+            where: {
+                id: 1
+            },
+            include: Book
+        })
+        .then(result => {
+            return Book.update({status: 'free'}, {
+                where: {
+                    id: result.BookId
+                }
+            })
+        })
+        .then(data => {
+            console.log(data)
+            res.redirect(`/users/${username}`)
+        })
+        .catch(err => {
+            res.send(err)
         })
     }
 }

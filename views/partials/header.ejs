@@ -13,7 +13,7 @@
         <a class="navbar-brand" href="/books">Books</a>
         <a class="navbar-brand" href="/authors">Authors</a>
 
-        <a class="navbar-brand" href="/users/<%=username%>" <%= username ? '' : 'hidden' %> <%= username %>></a>
+        <a class="navbar-brand" href="/users/<%=username%>" <%= username ? '' : 'hidden' %>><%= username %></a>
         <a class="navbar-brand" <%= author ? '' : 'hidden' %>><%= author %> </a>
         <a class="navbar-brand" href="/users/logout" <%= username || author ? '' : 'hidden' %> >Logout</a>
         

@@ -5,7 +5,8 @@ module.exports = (sequelize, DataTypes) => {
   class UserBook extends Model {
 
     static associate(models) {
-     
+     UserBook.belongsTo(models.User, {foreignKey: 'UserId', targetKey: 'id'})
+     UserBook.belongsTo(models.Book, {foreignKey: 'BookId', targetKey: 'id'})
     }
   };
   UserBook.init({
