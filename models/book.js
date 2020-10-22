@@ -56,7 +56,7 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notEmpty: {
           args: true,
-          msg: 'please isert the author'
+          msg: 'please insert the author'
         }
       }
     },

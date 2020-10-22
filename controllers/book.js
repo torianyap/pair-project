@@ -76,8 +76,7 @@ class BookController {
     }
 
     static edit(req, res){
-     
-        let id = +req.params.id
+        const id = +req.params.id
         const value = {
             title : req.body.title,
             genre : req.body.genre,
@@ -85,14 +84,13 @@ class BookController {
             released_year :req.body.released_year,
             AuthorId : req.body.AuthorId,
         }
-            Book
-            .update(value, {
+            Book.update(value, {
                 where: {
-                    id
+                    id: id
                 }
             })
-            .then(() =>{
-                res.redirect('/books', {username, author})
+            .then(data =>{
+                res.redirect('/books')
             })
             .catch(err=> {
                 if(err.errors){

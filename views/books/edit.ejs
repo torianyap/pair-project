@@ -9,7 +9,7 @@
         </div>
     <% }) %> 
 <%  } %>
-<form action="/books/edit" method="POST">
+<form action="/books/<%= book.id %>/edit" method="POST">
     <div class="form-group">
         <label for="title">Title</label>
         <input type="text" name="title" id="title" class="form-control" value = "<%=book.title%>">
@@ -35,9 +35,8 @@
             <%})%> 
         </select>
     </div>
-    <button class="btn btn-success" type="submit">Add Book</button>
+    <button class="btn btn-success" type="submit">Edit Book</button>
 </form>
-
 </div>
 </body>
 </html>
